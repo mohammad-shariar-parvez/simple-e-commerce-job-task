@@ -44,6 +44,7 @@
     // "indent": ["error", 4],
     // "quotes": ["error", "single"],
     "semi": ["error", "always"],
+    "react/prop-types": "off",
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
     "react/react-in-jsx-scope": "off"
