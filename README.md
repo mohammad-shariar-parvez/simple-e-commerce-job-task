@@ -117,4 +117,4 @@ Use the provided scripts in package.json for linting, building, and other develo
 
 Mohammad Shariar Parvez
 
-- Email: shariarparvez7@gmail.com
+- Email: shariarparvezm@gmail.com
