@@ -4,7 +4,9 @@
 
 This is a simple e-commerce project built using React, Redux, Axios, RTK Query, Tailwind CSS, Docker, Yarn, and Vite. The project allows users to search for items, view item details, filter by price range, and sort results. It is designed to be efficient, reusable, and responsive.
 
-![Project Demo](src/assets/demo.png)
+## Live Site
+
+https://e-commerce-gigalogy.netlify.app
 
 ## Features
 
@@ -18,10 +20,13 @@ This is a simple e-commerce project built using React, Redux, Axios, RTK Query, 
 
 ## Technologies Used
 
+- HTML
+- CSS
+- Javascript
 - React
 - Redux
-- Axios
 - RTK Query
+- Axios
 - Tailwind CSS
 - Docker
 - Yarn
