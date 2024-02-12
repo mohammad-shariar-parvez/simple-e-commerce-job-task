@@ -1,7 +1,7 @@
 import React from 'react';
 
 const PriceRange = ({
-  fixedPrice,
+  productPrice,
   handleFilterClick,
   priceDisplay,
   minPrice,
@@ -10,7 +10,7 @@ const PriceRange = ({
   return (
     <span
       className={`cursor-pointer ${
-        fixedPrice.minPrice == minPrice && fixedPrice.maxPrice == maxPrice
+        productPrice.minPrice == minPrice && productPrice.maxPrice == maxPrice
           ? 'font-semibold '
           : ''
       }`}

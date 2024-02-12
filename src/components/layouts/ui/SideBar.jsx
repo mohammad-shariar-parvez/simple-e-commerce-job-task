@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  updateFixedPrice,
+  updateProductPrice,
   updateSortOption,
 } from '../../../redux/features/filter/filterSlice';
+import PriceRange from './PriceRange';
+import PriceInput from './PriceInput';
+import SortingSector from './SortingSector';
 
 const SideBar = () => {
+  //dispath & useSelector for updating values to state
   const dispatch = useDispatch();
   const filterState = useSelector((state) => state.filter);
   const [priceSearchInput, setPriceSearchInput] = useState({
@@ -20,7 +24,7 @@ const SideBar = () => {
     });
 
     dispatch(
-      updateFixedPrice({
+      updateProductPrice({
         maxPrice: max,
         minPrice: min,
       })
@@ -29,10 +33,9 @@ const SideBar = () => {
 
   const handleFilterSubmit = (e) => {
     e.preventDefault();
-    // Use FormData to collect form data
-    // console.log(searchPrice.maxPrice, searchPrice.minPrice);
+
     dispatch(
-      updateFixedPrice({
+      updateProductPrice({
         maxPrice: priceSearchInput.maxPriceInput,
         minPrice: priceSearchInput.minPriceInput,
       })
@@ -48,9 +51,14 @@ const SideBar = () => {
   };
 
   const resetFilters = async () => {
+    setPriceSearchInput({
+      maxPriceInput: null,
+      minPriceInput: null,
+    });
+
     dispatch(
-      updateFixedPrice({
-        maxPrice: 9000,
+      updateProductPrice({
+        maxPrice: Infinity,
         minPrice: 0,
       })
     );
@@ -61,80 +69,86 @@ const SideBar = () => {
   };
 
   return (
-    <div className='space-y-4'>
+    <div
+      className={`space-y-4  block pointer-events-auto backdrop-blur-3xl   w-72 p-4 md:w-auto md:p-0 pt-24 md:pt-0  fixed md:static left-0 top-0 h-full  z-20 transition-transform transform md:transition-none  ease-in-out duration-500 md:translate-x-0  ${
+        filterState.slider ? 'translate-x-0' : '-translate-x-full '
+      }`}
+    >
       <div className='space-y-2 flex flex-col'>
-        <span
-          className='cursor-pointer'
-          onClick={() => handleFilterClick(0, 9000)}
-        >
-          All Products
-        </span>
-        <span
-          className='cursor-pointer'
-          onClick={() => handleFilterClick(0, 1000)}
-        >
-          Below 1000
-        </span>
-
-        <span
-          className='cursor-pointer'
-          onClick={() => handleFilterClick(1001, 2000)}
-        >
-          1001-2000
-        </span>
-
-        <span
-          className='cursor-pointer'
-          onClick={() => handleFilterClick(2001, 3000)}
-        >
-          2001-3000
-        </span>
-        <span
-          className='cursor-pointer'
-          onClick={() => handleFilterClick(3001, 4000)}
-        >
-          3001-4000
-        </span>
-        <span
-          className='cursor-pointer'
-          onClick={() => handleFilterClick(4001, 5000)}
-        >
-          4001-5000
-        </span>
-        <span
-          className='cursor-pointer'
-          onClick={() => handleFilterClick(5001, 6000)}
-        >
-          5001-6000
-        </span>
-        <span
-          className='cursor-pointer'
-          onClick={() => handleFilterClick(6001, 7000)}
-        >
-          6001-7000
-        </span>
+        <PriceRange
+          productPrice={filterState.productPrice}
+          handleFilterClick={handleFilterClick}
+          minPrice={0}
+          maxPrice={Infinity}
+          priceDisplay='All Products'
+        />
+        <PriceRange
+          productPrice={filterState.productPrice}
+          handleFilterClick={handleFilterClick}
+          minPrice={0}
+          maxPrice={5000}
+          priceDisplay='Below 5000'
+        />
+        <PriceRange
+          productPrice={filterState.productPrice}
+          handleFilterClick={handleFilterClick}
+          minPrice={5000}
+          maxPrice={10000}
+          priceDisplay='5000  - 10000'
+        />
+        <PriceRange
+          productPrice={filterState.productPrice}
+          handleFilterClick={handleFilterClick}
+          minPrice={10000}
+          maxPrice={20000}
+          priceDisplay='10000 - 20000'
+        />
+        <PriceRange
+          productPrice={filterState.productPrice}
+          handleFilterClick={handleFilterClick}
+          minPrice={20000}
+          maxPrice={30000}
+          priceDisplay='20000 - 30000'
+        />
+        <PriceRange
+          productPrice={filterState.productPrice}
+          handleFilterClick={handleFilterClick}
+          minPrice={30000}
+          maxPrice={40000}
+          priceDisplay='30000 - 40000'
+        />
+        <PriceRange
+          productPrice={filterState.productPrice}
+          handleFilterClick={handleFilterClick}
+          minPrice={40000}
+          maxPrice={50000}
+          priceDisplay='30000 - 40000'
+        />
+        <PriceRange
+          productPrice={filterState.productPrice}
+          handleFilterClick={handleFilterClick}
+          minPrice={50000}
+          maxPrice={Infinity}
+          priceDisplay='50000 and Above'
+        />
       </div>
+
       <form
         onSubmit={handleFilterSubmit}
-        className='flex justify-between items-center  space-x-1 pb-4'
+        className='flex  items-center  space-x-1 pb-4'
       >
-        <input
-          type='number'
+        {/* Input component for price search */}
+        <PriceInput
+          priceSearchInput={priceSearchInput.minPriceInput}
+          handleInputChange={handleInputChange}
+          placeholder={'Min'}
           name='minPriceInput'
-          placeholder='Min '
-          value={priceSearchInput.minPriceInput || ''}
-          onChange={handleInputChange}
-          aria-describedby='helper-text-explanation'
-          className='bg-gray-50 border border-gray-300   rounded focus:outline-gray-300 block w-full p-1  '
         />
-
-        <input
-          type='number'
+        <PriceInput
+          priceSearchInput={priceSearchInput.maxPriceInput}
+          handleInputChange={handleInputChange}
+          placeholder={'Max'}
           name='maxPriceInput'
-          placeholder='Max '
-          value={priceSearchInput.maxPriceInput || ''}
-          onChange={handleInputChange}
-          className='bg-gray-50 border border-gray-300   rounded focus:outline-gray-300 block w-full p-1'
         />
 
         <div className='flex space-x-1 ml-4 ps-2 '>
@@ -144,97 +158,37 @@ const SideBar = () => {
           >
             <i className='fa-solid fa-magnifying-glass '></i>
           </button>
-
           <button
             type='reset'
             onClick={resetFilters}
-            className=' py-1 px-2  font-normal text-tomato    ring-tomato ring-2 ring-inset  rounded   hover:text-tomatoDark  hover:ring-tomatoDark'
+            className=' px-2 py-[1px] mx-1  font-normal   rounded ring-1 ring-inset ring-gray-500   hover:bg-gray-100 hover:ring-2  '
           >
-            <i className='fa-solid fa-xmark'></i>
+            <i className='fa-solid fa-xmark text-lg'></i>
           </button>
         </div>
       </form>
+
+      {/* Sorting components to filter products */}
       <div className='pb-4'>
-        <div>
-          {/* <div className='flex items-center'>
-            <input
-              id='default-radio-2'
-              type='radio'
-              name='priceSorting'
-              value='desc'
-              checked={
-                filterState.sortBy === 'price' &&
-                filterState.sortOrder === 'desc'
-              }
-              onChange={() => handleSortChange('price', 'desc')}
-              className='w-4 h-4 text-tomato  bg-gray-100  '
-            />
-            <label
-              htmlFor='default-radio-1'
-              className='ms-2 text-sm font-medium text-gray-900 '
-            >
-              Default
-            </label>
-          </div> */}
-
-          <div className='flex justify-between items-center  space-y-2'>
-            <span>Price</span>
-            <div className='space-x-1'>
-              <button
-                onClick={() => handleSortChange('price', 'asc')}
-                className={`px-2.5 py-1  font-normal text-sm  text-tomato  ring-tomato ring-2 ring-inset  rounded   hover:ring-tomatoDark ${
-                  filterState.sortBy === 'price' &&
-                  filterState.sortOrder === 'asc'
-                    ? 'text-white bg-tomato'
-                    : ''
-                }`}
-              >
-                <i className='fa-solid fa-up-long'></i>
-              </button>
-
-              <button
-                onClick={() => handleSortChange('price', 'desc')}
-                className={`px-2.5 py-1  font-normal text-sm  text-tomato  ring-tomato ring-2 ring-inset  rounded   hover:ring-tomatoDark ${
-                  filterState.sortBy === 'price' &&
-                  filterState.sortOrder === 'desc'
-                    ? 'text-white bg-tomato'
-                    : ''
-                }`}
-              >
-                <i className='fa-solid fa-down-long'></i>
-              </button>
-            </div>
-          </div>
-
-          <div className='flex justify-between items-center  space-y-2'>
-            <span>Review</span>
-            <div className='space-x-1'>
-              <button
-                onClick={() => handleSortChange('review_count', 'asc')}
-                className={`px-2.5 py-1  font-normal text-sm  text-tomato  ring-tomato ring-2 ring-inset  rounded   hover:ring-tomatoDark ${
-                  filterState.sortBy === 'review_count' &&
-                  filterState.sortOrder === 'asc'
-                    ? 'text-white bg-tomato'
-                    : ''
-                }`}
-              >
-                <i className='fa-solid fa-up-long'></i>
-              </button>
-
-              <button
-                onClick={() => handleSortChange('review_count', 'desc')}
-                className={`px-2.5 py-1  font-normal text-sm  text-tomato  ring-tomato ring-2 ring-inset  rounded   hover:ring-tomatoDark ${
-                  filterState.sortBy === 'review_count' &&
-                  filterState.sortOrder === 'desc'
-                    ? 'text-white bg-tomato '
-                    : ''
-                }`}
-              >
-                <i className='fa-solid fa-down-long'></i>
-              </button>
-            </div>
-          </div>
-
+        <div className=' space-y-3'>
+          <SortingSector
+            name={'Price'}
+            handleSortChange={handleSortChange}
+            sortBy='price'
+            filterState={filterState}
+          />
+          <SortingSector
+            name={'Review Avarage'}
+            handleSortChange={handleSortChange}
+            sortBy='review_average'
+            filterState={filterState}
+          />
+          <SortingSector
+            name={'Review Count'}
+            handleSortChange={handleSortChange}
+            sortBy='review_count'
+            filterState={filterState}
+          />
           <div className='flex justify-between items-center  space-y-2'></div>
         </div>
       </div>

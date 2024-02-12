@@ -40,9 +40,17 @@ const StarRating = ({ rating, review_count }) => {
 
   return (
     <p className='flex items-center mt-1'>
-      {renderStars()}
-      <span className='ps-2 font-semibold me-1 text-sm'>{rating}</span>
-      <span className='text-sm '>({review_count} reviews)</span>
+      <div>
+        <div className='flex flex-col md:flex-row '>
+          <div>{renderStars()}</div>
+          <div>
+            <span className='ms-0 md:ms-2 font-semibold me-1 text-sm'>
+              {rating}
+            </span>
+            <span className='text-sm '>({review_count} reviews)</span>
+          </div>
+        </div>
+      </div>
     </p>
   );
 };

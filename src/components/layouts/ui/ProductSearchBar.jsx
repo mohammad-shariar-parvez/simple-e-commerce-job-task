@@ -16,12 +16,8 @@ const ProductSearchBar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     // Dispatch the searchQuery to Redux or perform any other actions
     dispatch(updateSearchTerm({ searchQuery }));
-
-    // Optionally, you can clear the input field after submission
-    // setSearchQuery('');
   };
 
   const handleResetSearch = () => {
