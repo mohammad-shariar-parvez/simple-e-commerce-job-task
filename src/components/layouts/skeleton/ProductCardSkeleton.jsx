@@ -6,7 +6,7 @@ const ProductCardSkeleton = () => {
     <>
       <div
         role='status'
-        className='  shadow animate-pulse  rounded-md p-[14px]   space-y-4  relative '
+        className='  shadow animate-pulse   p-[14px]   space-y-4 rounded relative bg-shadowLight '
       >
         <div className='flex items-center justify-center h-40 mb-4 bg-gray-300  '>
           <svg
