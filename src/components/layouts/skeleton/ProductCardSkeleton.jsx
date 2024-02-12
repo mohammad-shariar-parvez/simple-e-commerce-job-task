@@ -23,10 +23,10 @@ const ProductCardSkeleton = () => {
         <div className='mb-2 '>
           <div className='m-0 h-4   bg-gray-200 mb-4'></div>
           <div className='h-3 bg-gray-200 w-16 mb-4 '></div>
-          <div class='h-2 bg-gray-200 rounded w-36  mb-4'></div>
+          <div className='h-2 bg-gray-200 rounded w-36  mb-4'></div>
           <div>
-            <div class='h-2 bg-gray-200 rounded mb-1  '></div>
-            <div class='h-2 bg-gray-200 rounded '></div>
+            <div className='h-2 bg-gray-200 rounded mb-1  '></div>
+            <div className='h-2 bg-gray-200 rounded '></div>
           </div>
         </div>
         <div className='bg-gray-200 h-6'></div>
