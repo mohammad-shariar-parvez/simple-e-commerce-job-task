@@ -7,17 +7,11 @@ const PRODUCTS_URL = "/search";
 export const productApi = baseApi.injectEndpoints({
 	endpoints: (build) => ({
 		products: build.query({
-			query: (arg) => ({
-				url: PRODUCTS_URL,
+			query: ({ platform, item_id }) => ({
+				url: `/${platform}/${item_id}`,
 				method: "GET",
-				params: arg,
+
 			}),
-			transformResponse: (response, meta) => {
-				return {
-					products: response,
-					meta,
-				};
-			},
 			providesTags: [tagTypes.products],
 		}),
 
