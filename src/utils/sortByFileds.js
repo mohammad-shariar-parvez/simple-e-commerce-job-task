@@ -1,5 +1,4 @@
 export const sortByFileds = (a, b, sortBy, sortOrder) => {
-
 	const fieldA = a[sortBy];
 	const fieldB = b[sortBy];
 
@@ -12,5 +11,4 @@ export const sortByFileds = (a, b, sortBy, sortOrder) => {
 			? fieldB - fieldA
 			: fieldB.localeCompare(fieldA);
 	}
-
 };
