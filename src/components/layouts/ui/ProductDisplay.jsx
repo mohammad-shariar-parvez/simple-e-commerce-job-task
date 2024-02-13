@@ -61,7 +61,7 @@ const ProductDisplay = () => {
 
   if (isLoading && !isError) {
     searchComponent = (
-      <div className='grid grid-cols-2 md:grid-cols-4 md:gap-8 gap-3 min-h-28 md:min-h-80'>
+      <div className='grid grid-cols-2 md:grid-cols-4 md:gap-4 gap-3 min-h-28 md:min-h-80'>
         {Array.from({ length: 12 }).map((_, index) => (
           <ProductCardSkeleton key={index} />
         ))}
@@ -76,7 +76,7 @@ const ProductDisplay = () => {
     filterState.filteredProducts?.length > 0
   ) {
     searchComponent = (
-      <div className='grid grid-cols-2 md:grid-cols-4 md:gap-8 gap-3 min-h-28 md:min-h-80'>
+      <div className='grid grid-cols-2 md:grid-cols-4 md:gap-4 gap-3 min-h-28 md:min-h-80'>
         {filterState.filteredProducts?.map((item) => (
           <ProductCard key={item.item_id} item={item} />
         ))}
