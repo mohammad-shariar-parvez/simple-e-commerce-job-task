@@ -20,6 +20,10 @@ const ProductDetails = () => {
     return <ProductDetailsSkeleton />;
   }
 
+  if (!isLoading && isSuccess && !data) {
+    return <ProductDetailsSkeleton />;
+  }
+
   return (
     <section className='bg-[#EDEDED] '>
       <div className='pb-16'></div>
