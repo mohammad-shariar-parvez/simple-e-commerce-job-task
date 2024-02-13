@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import Home from '../pages/Home';
 import App from '../App';
 import ProductDetails from '../pages/ProductDetails';
+import NotFoundPage from '../pages/NotFound';
 
 const routes = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const routes = createBrowserRouter([
         element: <ProductDetails />,
       },
     ],
+  },
+  {
+    path: '*',
+    element: <NotFoundPage />,
   },
 ]);
 
