@@ -8,13 +8,6 @@ This is a simple e-commerce project built using React, Redux Toolkit, Axios, RTK
 
 https://e-commerce-gigalogy.netlify.app
 
-## Table of Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-
 ## Features
 
 - **Search:** Users can search for items, and the application displays the search results.
